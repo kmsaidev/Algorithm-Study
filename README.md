@@ -6,7 +6,7 @@
 |주차|문제|확인|
 |---|---|---|
 |1주차<br>(22-03-23 ~ 22-03-29)|[DFS와 BFS](https://www.acmicpc.net/problem/1260)<br>[돌게임 2](https://www.acmicpc.net/problem/9656)<br>[유기농 배추](https://www.acmicpc.net/problem/1012)|O|
-|2주차<br>(22-03-30 ~ 22-04-05)|[상어 초등학교](https://www.acmicpc.net/problem/21608)<br>[스타트와 링크](https://www.acmicpc.net/problem/14889)<br>[퇴사](https://www.acmicpc.net/problem/14889)||
+|2주차<br>(22-03-30 ~ 22-04-05)|[상어 초등학교](https://www.acmicpc.net/problem/21608)<br>[스타트와 링크](https://www.acmicpc.net/problem/14889)<br>[퇴사](https://www.acmicpc.net/problem/14501)||
 |3주차<br>(22-04-06 ~ 22-04-12)|[마법사 상어와 비바라기](https://www.acmicpc.net/problem/21610)<br>[로봇 청소기](https://www.acmicpc.net/problem/14503)<br>[연산자 끼워넣기](https://www.acmicpc.net/problem/14888)||
 |4주차(중간고사)<br>(22-04-13 ~ 22-04-19)|[마법사 상어와 파이어볼](https://www.acmicpc.net/problem/20056)||
 |5주차(중간고사)<br>(22-04-20 ~ 22-04-26)|||
