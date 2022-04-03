@@ -1,28 +1,26 @@
-def solution(idx, time, pay, depth, list):
+global pay_list
+pay_list = []
+def solution(idx, time, pay, depth, sum):
     if depth <= idx:
-        payList.append(list[:])
-        return
+        pay_list.append(sum)
+        return 
     for i in range(idx, depth):
         if i + time[i] <= depth:
-            solution(i + time[i], time, pay, depth, list + [pay[i]])
+            solution(i + time[i], time, pay, depth, sum + pay[i])
         else:
-            solution(i + time[i], time, pay, depth, list)
+            solution(i + time[i], time, pay, depth, sum)
 
 days = int(input())
 
-global payList
 time = []
 pay = []
 for i in range(days):
     t, p = map(int, input().split())
     time.append(t)
     pay.append(p)
-payList = []
-solution(0, time, pay, days, [])
+    
+solution(0, time, pay, days, 0)
 result = 0
-for i in range(len(payList)):
-    sum = 0
-    for j in range(len(payList[i])):
-        sum += payList[i][j]
-    result = max(result, sum)
+for i in range(len(pay_list)):
+    result = max(result, pay_list[i])
 print(result)
