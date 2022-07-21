@@ -9,7 +9,8 @@ public class Main {
     static Node trie;
     static char[][] board;
     static boolean[][] visited;
-    static String longWord, word;
+    static String longWord;
+    static StringBuilder sb = new StringBuilder();
     static int cnt, score;
 
     public static void main(String[] args) throws IOException {
@@ -66,7 +67,7 @@ public class Main {
         cnt = 0;
         score = 0;
         longWord = "";
-        word = "";
+        sb.append("");
     }
 
     static void dfs(int x, int y, Node n){
@@ -74,13 +75,13 @@ public class Main {
         int[] move_y = {1, 1, 0, -1, -1, -1, 0, 1};
 
         visited[x][y] = true;
-        word += board[x][y];
+        sb.append(board[x][y]);
         if(n.isWord && !n.isHit) {
-            int len = word.length();
+            int len = sb.length();
             if(longWord.length() < len)
-                longWord = word;
+                longWord = sb.toString();
             else if(longWord.length() == len){
-                longWord = longWord.compareTo(word) < 0 ? longWord : word;
+                longWord = longWord.compareTo(sb.toString()) < 0 ? longWord : sb.toString();
             }
             cnt++;
             switch(len){
@@ -111,7 +112,7 @@ public class Main {
                 dfs(new_x, new_y, n.child[board[new_x][new_y] - 'A']);
             }
         }
-        word = word.substring(0, word.length() - 1);
+        sb.deleteCharAt(sb.length() - 1);
         visited[x][y] = false;
     }
 
