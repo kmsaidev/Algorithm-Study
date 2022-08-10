@@ -2,14 +2,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Main {
     static int L, K, C;
-    static int[] loc;
-    static int[] len;
-    static int targetSize, targetLoc;
+    static int[] cut, diff;
+    static int resultLen, resultPos;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -18,55 +16,52 @@ public class Main {
         K = Integer.parseInt(st.nextToken());
         C = Integer.parseInt(st.nextToken());
 
-        loc = new int[K + 1];
-        len = new int[K + 1];
+        cut = new int[K + 1];
+        diff = new int[K + 1];
+
         st = new StringTokenizer(br.readLine());
         for(int i = 0; i < K; i++)
-            loc[i] = Integer.parseInt(st.nextToken());
-        loc[K] = L;
-        Arrays.sort(loc);
-
-
-        len[0] = loc[0];
+            cut[i] = Integer.parseInt(st.nextToken());
+        cut[K] = L;
+        Arrays.sort(cut);
+        diff[0] = cut[0];
         for(int i = 1; i <= K; i++)
-            len[i] = loc[i] - loc[i - 1];
-        solution();
-        System.out.println(targetSize + " " + targetLoc);
+            diff[i] = cut[i] - cut[i - 1];
+
+        search();
+        System.out.println(resultLen + " " + resultPos);
     }
 
-    static void solution(){
-        int left = 1, right = L;
-        while(left <= right) {
+    static void search(){
+        int left = 1;
+        int right = L;
+        while(left <= right){
             int mid = (left + right) / 2;
-            int answer = query(mid);
-            if(answer == -1){
-                left = mid + 1;
-            }else{
+            int check = isPossible(mid);
+            if(check != -1) {
+                resultLen = mid;
+                resultPos = check;
                 right = mid - 1;
-                targetSize = mid;
-                targetLoc = answer;
-            }
+            } else left = mid + 1;
         }
     }
 
-    static int query(int minSize){
-        int count = C;
+    static int isPossible(int len){
         int sum = 0;
+        int count = C;
         for(int i = K; i >= 0; i--){
-            if(len[i] > minSize)
-                return -1;
-            sum += len[i];
-            if(sum > minSize){
+            if(diff[i] > len) return -1;
+            sum += diff[i];
+
+            if(sum > len){
                 count--;
-                sum = len[i];
+                sum = diff[i];
             }
             if(count == 0){
-                if (loc[i] > minSize)
-                    return -1;
-                else
-                    return loc[i];
+                if(cut[i] > len) return -1;
+                else return cut[i];
             }
         }
-        return loc[0];
+        return cut[0];
     }
 }
