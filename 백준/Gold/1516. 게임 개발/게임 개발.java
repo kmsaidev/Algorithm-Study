@@ -46,10 +46,10 @@ public class Main {
             int next = queue.poll();
             for(int node : graph[next]){
                 inDegree[node]--;
+                time[node] = Math.max(time[node], time[next] + cost[node]);
                 if(inDegree[node] == 0) {
                     queue.add(node);
                 }
-                time[node] = Math.max(time[node], time[next] + cost[node]);
             }
         }
     }
