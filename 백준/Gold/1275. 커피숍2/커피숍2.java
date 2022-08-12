@@ -48,9 +48,8 @@ public class Main {
         for(int i = 0; i < N; i++)
             tree[S + i] = nums[i];
 
-        for(int i = S * 2 - 1; i >= 2; i--)
-            tree[i / 2] += tree[i];
-
+        for(int i = S - 1; i >= 1; i--)
+            tree[i] = tree[i * 2] + tree[i * 2 + 1];
     }
 
     static long query(int left, int right, int node, int queryLeft, int queryRight){
